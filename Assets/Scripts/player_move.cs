@@ -22,7 +22,7 @@ public class player_move : MonoBehaviour
     {
         h = Input.GetAxisRaw("Horizontal");
 
-        Debug.Log(transform.position, Vector3.down * 0.1f, Color.red);
+        Debug.DrawRay(transform.position, Vector3.down * 0.1f, Color.red);
         if (Physics2D.Raycast(transform.position, Vector3.down, 0.1f))
         {
             Grounded = true;
