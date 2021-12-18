@@ -4,12 +4,20 @@ using UnityEngine;
 
 public class player_move : MonoBehaviour
 {
-    public float Speed;
+    public Transform groundCheck;
+    public LayerMask groundLayer;
+    public float groundCheckRadius;
+
+    /* Salto */
     public float jumpForce;
 
-    private Rigidbody2D _rigidbody;
+    /* Movimiento */
+    public float Speed;
     private float h;
     private bool _grounded;
+
+    /* parametro */
+    private Rigidbody2D _rigidbody;
 
     private void Awake()
     {
@@ -30,16 +38,7 @@ public class player_move : MonoBehaviour
         Debug.Log("h: " + h);
 
         /* Detectar suelo */
-        Debug.DrawRay(transform.position, Vector3.down * 0.1f, Color.green);
-
-        if (Physics2D.Raycast(transform.position, Vector2.down, 0.1f))
-        {
-            _grounded = true;
-        }
-        else 
-        {
-            _grounded = false;
-        }
+        _grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         /* Saltar */
         if (Input.GetKeyDown(KeyCode.W) && _grounded == true)
@@ -49,7 +48,7 @@ public class player_move : MonoBehaviour
     }
 
     private void Jump() {
-        _rigidbody.AddForce(Vector2.up * jumpForce);
+        _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
     private void FixedUpdate()
