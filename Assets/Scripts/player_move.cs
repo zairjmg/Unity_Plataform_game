@@ -41,7 +41,7 @@ public class player_move : MonoBehaviour
         _grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
         /* Saltar */
-        if (Input.GetKeyDown(KeyCode.W) && _grounded == true)
+        if (Input.GetButtonDown("Jump") && _grounded == true)
         {
             Jump();
         }

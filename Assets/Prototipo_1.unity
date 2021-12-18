@@ -233,8 +233,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  groundCheckRadius: 0
-  jumpForce: 300
+  groundCheckRadius: 0.1
+  jumpForce: 7.5
   Speed: 5
 --- !u!50 &885050749
 Rigidbody2D:
