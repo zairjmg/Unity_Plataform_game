@@ -7,39 +7,54 @@ public class player_move : MonoBehaviour
     public float Speed;
     public float jumpForce;
 
-    private Rigidbody2D rb2d;
+    private Rigidbody2D _rigidbody;
     private float h;
-    private bool Grounded;
+    private bool _grounded;
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        /* movimiento */
         h = Input.GetAxisRaw("Horizontal");
+        Debug.Log("h: " + h);
 
-        Debug.DrawRay(transform.position, Vector3.down * 0.1f, Color.red);
-        if (Physics2D.Raycast(transform.position, Vector3.down, 0.1f))
+        /* Detectar suelo */
+        Debug.DrawRay(transform.position, Vector3.down * 0.1f, Color.green);
+
+        if (Physics2D.Raycast(transform.position, Vector2.down, 0.1f))
         {
-            Grounded = true;
-        } 
-        else Grounded = false;
+            _grounded = true;
+        }
+        else 
+        {
+            _grounded = false;
+        }
 
-        if(Input.GetKeyDown(KeyCode.W) && Grounded) {
+        /* Saltar */
+        if (Input.GetKeyDown(KeyCode.W) && _grounded == true)
+        {
             Jump();
         }
     }
 
     private void Jump() {
-        rb2d.AddForce(Vector2.up * jumpForce);
+        _rigidbody.AddForce(Vector2.up * jumpForce);
     }
 
     private void FixedUpdate()
     {
-        rb2d.velocity = new Vector2(h, rb2d.velocity.y);
+        //Debug.Log(Grounded);
+        _rigidbody.velocity = new Vector2(h * Speed, _rigidbody.velocity.y);
     }
 }
