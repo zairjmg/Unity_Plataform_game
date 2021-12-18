@@ -53,7 +53,6 @@ public class player_move : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Debug.Log(Grounded);
         _rigidbody.velocity = new Vector2(h * Speed, _rigidbody.velocity.y);
     }
 }
