@@ -62,7 +62,7 @@ public class player_move : MonoBehaviour
             Jump();
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             Shoot();
         }
@@ -94,7 +94,7 @@ public class player_move : MonoBehaviour
         }
 
         GameObject bullet = Instantiate(_bullet, transform.position + direction * 0.1f, Quaternion.identity);
-        bullet.GetComponent<Bullt_controller>().SetDirection(direction);
+        bullet.GetComponent<Bullet_controller>().SetDirection(direction);
     }
 
     private void flip() {
