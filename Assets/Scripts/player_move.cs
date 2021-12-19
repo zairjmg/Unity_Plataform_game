@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class player_move : MonoBehaviour
 {
+    /* Prefap */
+    public GameObject _bullet;
+
     public Transform groundCheck;
     public LayerMask groundLayer;
     public float groundCheckRadius;
@@ -58,6 +61,11 @@ public class player_move : MonoBehaviour
         {
             Jump();
         }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Shoot();
+        }
     }
 
     private void FixedUpdate()
@@ -68,10 +76,25 @@ public class player_move : MonoBehaviour
     private void LateUpdate() {
         _animator.SetBool("Running", h != 0.0f);
         _animator.SetInteger("Idle", ((int)h));
+        _animator.SetBool("Grounded", _grounded);
     }
 
     private void Jump() {
         _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    }
+
+    private void Shoot() {
+        Vector3 direction;
+        if (_facingRight == true)
+        {
+            direction = Vector2.right;
+        } else
+        {
+            direction = Vector2.left;
+        }
+
+        GameObject bullet = Instantiate(_bullet, transform.position + direction * 0.1f, Quaternion.identity);
+        bullet.GetComponent<Bullt_controller>().SetDirection(direction);
     }
 
     private void flip() {
