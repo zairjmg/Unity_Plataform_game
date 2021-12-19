@@ -7,9 +7,9 @@ public class player_move : MonoBehaviour
     /* Prefap */
     public GameObject _bullet;
 
-    public Transform groundCheck;
-    public LayerMask groundLayer;
-    public float groundCheckRadius;
+    /* Disparo */
+    public Transform shoot;
+    private float LastShoot;    
 
     /* Salto */
     public float jumpForce;
@@ -19,6 +19,9 @@ public class player_move : MonoBehaviour
     private float h;
     private bool _grounded;
     private bool _facingRight = true;
+    public LayerMask groundLayer;
+    public float groundCheckRadius;
+    public Transform groundCheck;
 
     /* parametro */
     private Rigidbody2D _rigidbody;
@@ -62,10 +65,18 @@ public class player_move : MonoBehaviour
             Jump();
         }
 
+        /* Disperar */
         if (Input.GetKeyDown(KeyCode.Z))
         {
             Shoot();
         }
+
+        /* Rafaga de disparo */
+        if (Input.GetKey(KeyCode.X) && Time.time > LastShoot + 0.25f)
+        {
+            Shoot();
+            LastShoot = Time.time;
+        } 
     }
 
     private void FixedUpdate()
@@ -85,15 +96,10 @@ public class player_move : MonoBehaviour
 
     private void Shoot() {
         Vector3 direction;
-        if (_facingRight == true)
-        {
-            direction = Vector2.right;
-        } else
-        {
-            direction = Vector2.left;
-        }
+        if (_facingRight == true) direction = Vector2.right;
+        else direction = Vector2.left;
 
-        GameObject bullet = Instantiate(_bullet, transform.position + direction * 0.1f, Quaternion.identity);
+        GameObject bullet = Instantiate(_bullet, shoot.transform.position + direction * 0.1f, Quaternion.identity);
         bullet.GetComponent<Bullet_controller>().SetDirection(direction);
     }
 
