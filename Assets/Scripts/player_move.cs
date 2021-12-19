@@ -18,10 +18,12 @@ public class player_move : MonoBehaviour
 
     /* parametro */
     private Rigidbody2D _rigidbody;
+    private Animator _animator;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -54,5 +56,6 @@ public class player_move : MonoBehaviour
     private void FixedUpdate()
     {
         _rigidbody.velocity = new Vector2(h * Speed, _rigidbody.velocity.y);
+        _animator.SetBool("Running", h != 0.0f);
     }
 }
