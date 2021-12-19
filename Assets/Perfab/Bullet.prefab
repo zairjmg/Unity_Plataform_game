@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a8d2b3a62b77b45ad237049c99fd9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 30
 --- !u!50 &2449927041139483842
 Rigidbody2D:
   serializedVersion: 4
@@ -152,6 +152,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0012617111, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.5012617
