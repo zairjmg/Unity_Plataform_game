@@ -27,9 +27,11 @@ public class Bullet_controller : MonoBehaviour
 
         if (_player != null) _player.Hit();
         if (_enemy != null) _enemy.Hit();
+
+        DestroyBullet();
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
+    /* private void OnCollisionEnter2D(Collision2D other) {
         player_move _player = other.collider.GetComponent<player_move>();
         Enemy _enemy = other.collider.GetComponent<Enemy>();
 
@@ -37,7 +39,7 @@ public class Bullet_controller : MonoBehaviour
         if (_enemy != null) _enemy.Hit();
 
         DestroyBullet();
-    }
+    } */
 
     public void SetDirection(Vector2 direction) {
         _ditection = direction;

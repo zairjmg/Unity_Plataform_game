@@ -25,9 +25,7 @@ public class Enemy : MonoBehaviour
 
         float distance = Mathf.Abs(_player.transform.position.x - _shootPoint.transform.position.x);
 
-        Debug.DrawRay(this.transform.position, Vector2.left * x, Color.black);
-
-        if (distance < x && Time.time > LastShoot + 0.3f)
+        if (distance < x && Time.time > LastShoot + 0.4f)
         {
             Shoot();
             LastShoot = Time.time;

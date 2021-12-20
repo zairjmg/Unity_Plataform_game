@@ -29,6 +29,7 @@ public class player_move : MonoBehaviour
     /* parametro */
     private Rigidbody2D _rigidbody;
     private Animator _animator;
+    public AudioClip _audio;
 
     private void Awake()
     {
@@ -88,6 +89,7 @@ public class player_move : MonoBehaviour
     }
 
     private void Jump() {
+        Camera.main.GetComponent<AudioSource>().PlayOneShot(_audio);
         _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
