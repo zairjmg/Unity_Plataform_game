@@ -25,10 +25,15 @@ public class Bullet_controller : MonoBehaviour
         player_move _player = other.GetComponent<player_move>();
         Enemy _enemy = other.GetComponent<Enemy>();
 
-        if (_player != null) _player.Hit();
-        if (_enemy != null) _enemy.Hit();
-
-        DestroyBullet();
+        if (_player != null) {
+            _player.Hit();
+            DestroyBullet();
+        }
+        if (_enemy != null) {
+            _enemy.Hit();
+            DestroyBullet();
+        }
+        
     }
 
     /* private void OnCollisionEnter2D(Collision2D other) {

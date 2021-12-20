@@ -27,14 +27,17 @@ public class player_move : MonoBehaviour
     public Transform groundCheck;
 
     /* parametro */
+    public AudioClip _audio;
     private Rigidbody2D _rigidbody;
     private Animator _animator;
-    public AudioClip _audio;
+    private AudioSource _audiosource;
+
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _audiosource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -89,7 +92,8 @@ public class player_move : MonoBehaviour
     }
 
     private void Jump() {
-        Camera.main.GetComponent<AudioSource>().PlayOneShot(_audio);
+        /* Camera.main.GetComponent<AudioSource>().PlayOneShot(_audio); */
+        _audiosource.Play();
         _rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
