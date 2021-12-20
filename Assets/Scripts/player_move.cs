@@ -9,7 +9,10 @@ public class player_move : MonoBehaviour
 
     /* Disparo */
     public Transform shoot;
-    private float LastShoot;    
+    private float LastShoot;   
+
+    /* Vida */
+    private int Health = 5; 
 
     /* Salto */
     public float jumpForce;
@@ -31,12 +34,6 @@ public class player_move : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -108,5 +105,10 @@ public class player_move : MonoBehaviour
         float _localScaleX = transform.localScale.x;
         _localScaleX = _localScaleX * -1f;
         transform.localScale = new Vector3(_localScaleX, transform.localScale.y, transform.localScale.z);
+    }
+
+    public void Hit() {
+        Health = Health - 1;
+        if (Health == 0) Destroy(gameObject);
     }
 }
